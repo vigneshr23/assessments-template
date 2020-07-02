@@ -1,0 +1,13 @@
+.countries {
+  max-height: 40rem;
+  overflow: auto;
+}
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.country {
+  display: flex;
+  flex-direction: column;
+}
