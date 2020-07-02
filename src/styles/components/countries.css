@@ -6,6 +6,10 @@
 .table th {
   vertical-align: middle;
 }
+.table th {
+  position: sticky;
+  top: -1px;
+}
 
 .country {
   display: flex;
