@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 function Facet({ actions = {} }) {
   return (
@@ -26,13 +26,16 @@ function Sort({ handleSort }) {
   };
 
   return (
-    <select value={state} onChange={e => handleSortChange(e)}>
-      <option value="0" disabled>
-        ---
-      </option>
-      <option value="1">ASC</option>
-      <option value="2">DESC</option>
-    </select>
+    <div>
+      <label>Sort By Population &nbsp;</label>
+      <select value={state} onChange={e => handleSortChange(e)}>
+        <option value="0" disabled>
+          ---
+        </option>
+        <option value="1">ASC</option>
+        <option value="2">DESC</option>
+      </select>
+    </div>
   );
 }
 
