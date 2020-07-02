@@ -3,7 +3,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 function Facet({ actions = {} }) {
   return (
     <div className="container facet-container">
-      <h3>Facet</h3>
       <Filter />
       <Sort handleSort={actions.sortCountriesByPop} />
     </div>
@@ -11,7 +10,13 @@ function Facet({ actions = {} }) {
 }
 
 function Filter() {
-  return <div>Filter</div>;
+  const [state, setState] = useState('');
+  return (
+    <div>
+      <label>Filter By &nbsp; </label>
+      <input placeholder="Country Name or Code" value={state} onChange={e => setState(e.target.value)} />
+    </div>
+  );
 }
 
 function Sort({ handleSort }) {

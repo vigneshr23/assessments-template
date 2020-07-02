@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { getCountries } from '../services/countries';
 import { handleRequest } from '../utils/fetchUtils';
 import Countries from './countries-list';
 import Facet from './facet';
