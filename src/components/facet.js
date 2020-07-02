@@ -3,18 +3,22 @@ import React, { useState, useEffect, Fragment } from 'react';
 function Facet({ actions = {} }) {
   return (
     <div className="container facet-container">
-      <Filter />
+      <Filter handleFilter={actions.filterByName} />
       <Sort handleSort={actions.sortCountriesByPop} />
     </div>
   );
 }
 
-function Filter() {
+function Filter({ handleFilter }) {
   const [state, setState] = useState('');
+  const handleChange = e => {
+    setState(e.target.value);
+    handleFilter(e.target.value);
+  };
   return (
     <div>
       <label>Filter By &nbsp; </label>
-      <input placeholder="Country Name or Code" value={state} onChange={e => setState(e.target.value)} />
+      <input placeholder="Country Name or Code" value={state} onChange={e => handleChange(e)} />
     </div>
   );
 }

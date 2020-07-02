@@ -1,6 +1,23 @@
+.container-fluid {
+  background: #00416a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e4e5e6, #00416a); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e4e5e6,
+    #00416a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  height: 99vh;
+}
+
+.main {
+  padding-top: 1.6rem;
+}
 .countries {
   max-height: 40rem;
   overflow: auto;
+  border: 1px solid #31307163;
+  border-radius: 6px;
 }
 .table td,
 .table th {
@@ -14,4 +31,20 @@
 .country {
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
+}
+
+.figure {
+  position: relative;
+  max-width: 70rem;
+  margin-right: 2rem;
+}
+.figure img {
+  width: 100%;
+}
+.figure figcaption {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white;
 }

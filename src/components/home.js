@@ -5,17 +5,40 @@ import Facet from './facet';
 
 function Home() {
   const [countries, setCountries] = useState(null);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [filter, setFilter] = useState(false);
 
   const sortCountriesByPop = sortBy => {
-    const _countries = [...countries];
-    if (sortBy == 1) {
-      //   const population = { countries };
-      //   console.log(population);
-      setCountries(_countries.sort((a, b) => a.population - b.population));
+    let _countries = [],
+      _applySort = null;
+    if (filter) {
+      // select filtered countries for sort
+      _countries = [...filteredCountries];
+      _applySort = setFilteredCountries;
     } else {
-      setCountries(_countries.sort((a, b) => b.population - a.population));
+      _countries = [...countries];
+      _applySort = setCountries;
+    }
+    if (sortBy == 1) {
+      // ascending
+      _applySort(_countries.sort((a, b) => a.population - b.population));
+    } else {
+      _applySort(_countries.sort((a, b) => b.population - a.population));
     }
     console.log({ sortBy });
+  };
+
+  const filterByName = term => {
+    console.log({ term });
+    const _term = term.toLowerCase();
+    const filtered = countries.filter(({ name, alpha2Code }) => {
+      const cname = name.toLowerCase();
+      const code = alpha2Code.toLowerCase();
+      return cname.includes(_term) || code.includes(_term);
+    });
+    if (term) setFilter(true);
+    else setFilter(false);
+    setFilteredCountries(filtered);
   };
 
   const getAllCountries = () => {
@@ -27,11 +50,12 @@ function Home() {
   }, []);
 
   const facetActions = {
-    sortCountriesByPop: sortCountriesByPop
+    sortCountriesByPop: sortCountriesByPop,
+    filterByName: filterByName
   };
 
   return (
-    <div className="container">
+    <div className="container main">
       <h3 style={{ textAlign: 'center', marginBottom: '1rem' }}>List of Countries</h3>
       {countries ? (
         <Fragment>
@@ -39,7 +63,7 @@ function Home() {
             <Facet actions={facetActions} />
           </div>
           <div className="countries">
-            <Countries countries={countries} />
+            <Countries countries={filter ? filteredCountries : countries} />
           </div>
         </Fragment>
       ) : (

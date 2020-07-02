@@ -4,21 +4,29 @@ import CountryDetails from './country-details';
 
 function Countries({ countries, ...props }) {
   const getRows = () => {
-    return countries.map((country, index) => (
-      <tr key={country.alpha2Code}>
-        <td>{`${country.name} (${country.alpha2Code})`}</td>
-        <td>{country.capital}</td>
-        <td>{country.population}</td>
-        <td>
-          <ModalContainer
-            title={country.name}
-            display={handleHide => <CountryDetails hide={handleHide} country={country} />}
-          >
-            <button className="btn btn-primary">View Details</button>
-          </ModalContainer>
+    return countries.length > 0 ? (
+      countries.map((country, index) => (
+        <tr key={country.alpha2Code}>
+          <td>{`${country.name} (${country.alpha2Code})`}</td>
+          <td>{country.capital}</td>
+          <td>{country.population}</td>
+          <td>
+            <ModalContainer
+              title={country.name}
+              display={handleHide => <CountryDetails hide={handleHide} country={country} />}
+            >
+              <button className="btn btn-primary">View Details</button>
+            </ModalContainer>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="4">
+          <h4 style={{ textAlign: 'center' }}>No match found!</h4>
         </td>
       </tr>
-    ));
+    );
   };
   return (
     <Fragment>

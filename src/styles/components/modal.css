@@ -2,7 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #eee;
+  background: #00416a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #00416a, #e4e5e6); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #00416a,
+    #e4e5e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   position: fixed;
   width: 95%;
   height: 95%;
@@ -24,4 +31,10 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   width: 100%;
+}
+
+.modal__container {
+  display: flex;
+  flex: 1 auto;
+  max-width: 1366px;
 }
